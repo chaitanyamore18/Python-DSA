@@ -1,14 +1,12 @@
 class Node:
-    def __init__(self, value):
-        self.left = None
-        self.right = None
-        self.data = value
-
+    def __init__(self,value):
+        self.left=None
+        self.right=None
+        self.data=value
 
 class BST:
     def __init__(self):
         self.root = None
-
     def insert(self, new_node):
         if self.root is None:   # if bst is empty
             self.root = new_node
@@ -60,33 +58,30 @@ class BST:
             temp = self.root
             while temp.left is not None:
                 temp = temp.left
-            print("Minimum value is", temp.data)
-
+            print("Minimum value is",temp.data)
             # Maximum
             temp = self.root
             while temp.right is not None:
                 temp = temp.right
-            print("Maximum value is", temp.data)
+                print("Maximum value is",temp.data)
 
     def del_node(self, rt, val):
         if rt is None:
-            return None
+            return
         if val < rt.data:
             rt.left = self.del_node(rt.left, val)
         elif val > rt.data:
             rt.right = self.del_node(rt.right, val)
         else:
-            # Node with 0 or 1 child
             if rt.left is None:
                 return rt.right
             if rt.right is None:
                 return rt.left
 
-            # Node with 2 children (succ = inorder successor)
+            # when node has both left and right child (succ = successor)
             succ = self.get_successor(rt)
             rt.data = succ.data
             rt.right = self.del_node(rt.right, succ.data)
-
         return rt
 
     def get_successor(self, temp):
@@ -94,7 +89,6 @@ class BST:
         while temp is not None and temp.left is not None:
             temp = temp.left
         return temp
-
 
 b1 = BST()
 b1.insert(Node(100))
@@ -114,5 +108,5 @@ b1.postorder(b1.root)
 print()
 b1.findminmax(b1.root)
 
-b1.root = b1.del_node(b1.root, 65)
+b1.del_node(b1.root, 65)
 b1.inorder(b1.root)
