@@ -101,6 +101,27 @@ class BST:
             temp = temp.left
         return temp
 
+# same level elements printed. also called bredth first search
+    def level_order(self, rt):
+        if rt is None:
+            print("BST is empty..")
+        arr = []
+        cnt = 0
+        level = 0
+        arr.append(rt)
+        while(cnt < len(arr)):
+            node_count = len(arr) - cnt
+            print("\nLevel No.", level, end=" ")
+            for i in range(node_count):
+                temp = arr[cnt]
+                cnt += 1    # no of nodes visited
+                print(temp.data, end=" ")   # visiting node
+                if temp.left:
+                    arr.append(temp.left)
+                if temp.right:
+                    arr.append(temp.right)
+            level += 1
+            
 
 b1 = BST()
 b1.insert(Node(100))
@@ -110,6 +131,8 @@ b1.insert(Node(0))
 b1.insert(Node(65))
 b1.insert(Node(300))
 b1.insert(Node(500))
+b1.insert(Node(50))
+b1.insert(Node(70))
 
 # print("Inorder:")
 # b1.inorder(b1.root)
@@ -123,7 +146,10 @@ b1.insert(Node(500))
 # b1.del_node(b1.root, 65)
 # b1.inorder(b1.root)
 
-if b1.search(10):
-    print("\nFound the node")
-else:
-    print("Not found")
+# if b1.search(10):
+#     print("\nFound the node")
+# else:
+#     print("Not found")
+
+print("\nLevel order")
+b1.level_order(b1.root)
