@@ -91,7 +91,6 @@ class BST():
             temp = temp.left
         return temp
 
-
 b = BST()
 b.insert(Node(50))
 b.insert(Node(30))
